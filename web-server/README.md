@@ -14,7 +14,7 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 ## Phases
 
 - [ ] **Phase 0 — Toolchain + blinky (GPIO output)**
-  - [ ] Component lab: characterize LEDs, resistors, buttons with the multimeter
+  - [x] Component lab: characterize LEDs, resistors, buttons with the multimeter
   - [ ] Install ESP-IDF v6.1 (record the exact version)
   - [ ] USB passthrough (`usbipd-win`) + serial permissions
   - [ ] Project skeleton; build, flash, monitor
@@ -28,4 +28,10 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 
 ## Log
 
-<!-- One entry per session: date, what was done, findings, gotchas. -->
+### 2026-09-10 — Component lab (Phase 0, step 1)
+
+- Buttons: checked with the multimeter in continuity mode.
+- LEDs: red LED measured in diode mode → Vf ≈ 1.48 V.
+- Resistors: 220 Ω found (red-red-brown-gold bands; measured 215–240 Ω on the 2 kΩ range).
+- Blinky combo locked: red LED + 220 Ω → expected current ≈ 8 mA.
+- Gotcha: diode mode displays a voltage (mV), not resistance; Ω mode is meaningless on a diode.
