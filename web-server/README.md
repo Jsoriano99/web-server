@@ -13,12 +13,12 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 
 ## Phases
 
-- [ ] **Phase 0 — Toolchain + blinky (GPIO output)**
+- [x] **Phase 0 — Toolchain + blinky (GPIO output)**
   - [x] Component lab: characterize LEDs, resistors, buttons with the multimeter
   - [x] Install ESP-IDF v6.1 (`source ~/.espressif/tools/activate_idf_v6.1.sh`)
   - [x] USB passthrough (`usbipd-win`) + serial permissions
   - [x] Project skeleton; build, flash, monitor
-  - [ ] Blinky from a FreeRTOS task
+  - [x] Blinky from a FreeRTOS task
 - [ ] **Phase 1 — Digital input: button, pull-up, debounce**
 - [ ] **Phase 2 — Wi-Fi station**
 - [ ] **Phase 3 — HTTP server**
@@ -62,3 +62,12 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 - Serial monitor shows the boot chain (ROM → 2nd stage bootloader → app) and `Hello from the web-server project main.c file!`
 - App version in the boot log = the git commit hash (`6552152`) — IDF stamps the build with the repo state.
 - **Finding (verification):** the board has 4 MB flash but the image declares 2 MB — `W spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k)`. Fixed: menuconfig → Serial flasher config → Flash size → 4 MB; the warning is gone on the next boot (user-confirmed).
+
+### 2026-09-10 — Blinky works: Phase 0 COMPLETE
+
+- `main.c` rewritten with the GPIO driver: `gpio_reset_pin` → `gpio_set_direction(OUTPUT)` → `gpio_set_level` inside `while(1)` with `vTaskDelay(pdMS_TO_TICKS(500))`.
+- First flash: LED blinks at 1 Hz (0.5 s on / 0.5 s off). No changes needed to `main/CMakeLists.txt`.
+- USB attach had dropped (Windows sleep); re-attached, and the WSL kernel log (`dmesg`) told the story.
+- Phase 0 closed: component lab → toolchain → USB → skeleton → flash/monitor → first driver.
+- Next: Phase 1 — button, pull-up, debounce.
+
