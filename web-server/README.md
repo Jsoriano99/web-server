@@ -17,7 +17,7 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
   - [x] Component lab: characterize LEDs, resistors, buttons with the multimeter
   - [x] Install ESP-IDF v6.1 (`source ~/.espressif/tools/activate_idf_v6.1.sh`)
   - [x] USB passthrough (`usbipd-win`) + serial permissions
-  - [ ] Project skeleton; build, flash, monitor
+  - [x] Project skeleton; build, flash, monitor
   - [ ] Blinky from a FreeRTOS task
 - [ ] **Phase 1 — Digital input: button, pull-up, debounce**
 - [ ] **Phase 2 — Wi-Fi station**
@@ -55,3 +55,10 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 - Gotchas: the root file was saved as `CMakeLists.text` (extensions matter); CMake comments use `#`, not `//`; typo `cmake_minimum_version` → `cmake_minimum_required`.
 - `idf.py set-target esp32` + `idf.py build` → `Project build complete.`
 - Artifacts: `bootloader/bootloader.bin`, `partition_table/partition-table.bin`, `web-server.bin`.
+
+### 2026-09-10 — Flash + monitor working (Phase 0, step 4 complete)
+
+- `idf.py flash` wrote all three binaries; hashes verified; board hard-reset into the new firmware.
+- Serial monitor shows the boot chain (ROM → 2nd stage bootloader → app) and `Hello from the web-server project main.c file!`
+- App version in the boot log = the git commit hash (`6552152`) — IDF stamps the build with the repo state.
+- **Finding (verification):** the board has 4 MB flash but the image declares 2 MB — `W spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k)`. Fix pending: menuconfig → Serial flasher config → Flash size → 4 MB.
