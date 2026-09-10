@@ -15,7 +15,7 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 
 - [ ] **Phase 0 — Toolchain + blinky (GPIO output)**
   - [x] Component lab: characterize LEDs, resistors, buttons with the multimeter
-  - [ ] Install ESP-IDF v6.1 (record the exact version)
+  - [x] Install ESP-IDF v6.1 (`source ~/.espressif/tools/activate_idf_v6.1.sh`)
   - [ ] USB passthrough (`usbipd-win`) + serial permissions
   - [ ] Project skeleton; build, flash, monitor
   - [ ] Blinky from a FreeRTOS task
@@ -35,3 +35,9 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 - Resistors: 220 Ω found (red-red-brown-gold bands; measured 215–240 Ω on the 2 kΩ range).
 - Blinky combo locked: red LED + 220 Ω → expected current ≈ 8 mA.
 - Gotcha: diode mode displays a voltage (mV), not resistance; Ω mode is meaningless on a diode.
+
+### 2026-09-10 — ESP-IDF v6.1 installed (Phase 0, step 2)
+
+- Installed via EIM (`eim-cli` → `eim install`); IDF lives at `~/.espressif/v6.1/esp-idf`.
+- Per-session activation: `source ~/.espressif/tools/activate_idf_v6.1.sh`.
+- Verified: `idf.py --version` → `ESP-IDF v6.1`.
