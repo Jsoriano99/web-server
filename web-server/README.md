@@ -16,7 +16,7 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 - [ ] **Phase 0 — Toolchain + blinky (GPIO output)**
   - [x] Component lab: characterize LEDs, resistors, buttons with the multimeter
   - [x] Install ESP-IDF v6.1 (`source ~/.espressif/tools/activate_idf_v6.1.sh`)
-  - [ ] USB passthrough (`usbipd-win`) + serial permissions
+  - [x] USB passthrough (`usbipd-win`) + serial permissions
   - [ ] Project skeleton; build, flash, monitor
   - [ ] Blinky from a FreeRTOS task
 - [ ] **Phase 1 — Digital input: button, pull-up, debounce**
@@ -41,3 +41,10 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 - Installed via EIM (`eim-cli` → `eim install`); IDF lives at `~/.espressif/v6.1/esp-idf`.
 - Per-session activation: `source ~/.espressif/tools/activate_idf_v6.1.sh`.
 - Verified: `idf.py --version` → `ESP-IDF v6.1`.
+
+### 2026-09-10 — USB passthrough working (Phase 0, step 3)
+
+- Board detected by Windows: CH340 (1a86:7523), usbipd BUSID `3-1`; attached to WSL as `/dev/ttyUSB0`.
+- Gotcha: WSL caches the Windows PATH — after installing usbipd, `usbipd.exe` is "command not found" until `export PATH="$PATH:/mnt/c/Program Files/usbipd-win"` (or a WSL restart).
+- Gotcha: `/dev/ttyUSB0` is `root:dialout`; the user was added to `dialout` (applies fully after a WSL restart) — meanwhile `newgrp dialout` grants access per shell (verified working).
+- `usbipd attach` must be repeated after replugging the board or rebooting Windows.
