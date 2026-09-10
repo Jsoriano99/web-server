@@ -61,4 +61,4 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 - `idf.py flash` wrote all three binaries; hashes verified; board hard-reset into the new firmware.
 - Serial monitor shows the boot chain (ROM → 2nd stage bootloader → app) and `Hello from the web-server project main.c file!`
 - App version in the boot log = the git commit hash (`6552152`) — IDF stamps the build with the repo state.
-- **Finding (verification):** the board has 4 MB flash but the image declares 2 MB — `W spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k)`. Fix pending: menuconfig → Serial flasher config → Flash size → 4 MB.
+- **Finding (verification):** the board has 4 MB flash but the image declares 2 MB — `W spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k)`. Fixed: menuconfig → Serial flasher config → Flash size → 4 MB; the warning is gone on the next boot (user-confirmed).
