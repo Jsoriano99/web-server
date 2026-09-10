@@ -48,3 +48,10 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 - Gotcha: WSL caches the Windows PATH — after installing usbipd, `usbipd.exe` is "command not found" until `export PATH="$PATH:/mnt/c/Program Files/usbipd-win"` (or a WSL restart).
 - Gotcha: `/dev/ttyUSB0` is `root:dialout`; the user was added to `dialout` (applies fully after a WSL restart) — meanwhile `newgrp dialout` grants access per shell (verified working).
 - `usbipd attach` must be repeated after replugging the board or rebooting Windows.
+
+### 2026-09-10 — Skeleton + first build (Phase 0, step 4a)
+
+- Created by hand: `CMakeLists.txt`, `main/CMakeLists.txt`, `main/main.c`.
+- Gotchas: the root file was saved as `CMakeLists.text` (extensions matter); CMake comments use `#`, not `//`; typo `cmake_minimum_version` → `cmake_minimum_required`.
+- `idf.py set-target esp32` + `idf.py build` → `Project build complete.`
+- Artifacts: `bootloader/bootloader.bin`, `partition_table/partition-table.bin`, `web-server.bin`.
