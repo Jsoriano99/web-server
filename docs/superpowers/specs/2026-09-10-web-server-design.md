@@ -36,7 +36,7 @@ from which the user can:
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| Toolchain | Native ESP-IDF v5.x on WSL2 (exact version pinned in `README.md` during Phase 0) | Coherent with the lab design: bare-metal, real APIs, FreeRTOS visible. Official examples map 1:1. |
+| Toolchain | Native ESP-IDF v6.1 (current stable; exact version pinned in `README.md` during Phase 0) on WSL2 | Coherent with the lab design: bare-metal, real APIs, FreeRTOS visible. Official examples map 1:1. |
 | Framework | ESP-IDF only — no Arduino | `digitalWrite()` / `WiFi.h` would hide exactly the layers we want to learn. |
 | HTTP server | `esp_http_server` | Handles connections in dedicated FreeRTOS tasks; the main task never busy-waits on sockets. |
 | Project home | `web-server/` | Folder already created; keeps the lab root clean. |
@@ -108,7 +108,7 @@ plan when we reach it. Phase 6 is explicitly optional.
 ## Phase 0 — First Slice (detailed)
 
 1. Component lab: characterize LEDs, resistors, and buttons with the multimeter; confirm the pin plan (LED → GPIO2, button → GPIO4).
-2. Install ESP-IDF v5.x on WSL2 (official installer); verify `idf.py --version` and record the exact version in `README.md`.
+2. Install ESP-IDF v6.1 on WSL2 (official EIM installer); verify `idf.py --version` and record the exact version in `README.md`.
 3. Enable USB passthrough for the board (`usbipd-win`) and fix serial permissions.
 4. Create the project skeleton; `idf.py set-target esp32`, build, flash, monitor.
 5. Blink the LED from a FreeRTOS task; log the boot banner.

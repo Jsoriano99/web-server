@@ -36,7 +36,7 @@ esp32/
 
 ## Tooling
 
-- ESP-IDF v5.x — real register access + datasheet reading.
+- ESP-IDF v6.1 (current stable) — real register access + datasheet reading.
 - Verilator — free RTL simulator on Linux.
 - No Arduino/MicroPython shortcuts; bare-metal first.
 

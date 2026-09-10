@@ -15,7 +15,7 @@ Design doc: [`../docs/superpowers/specs/2026-09-10-web-server-design.md`](../doc
 
 - [ ] **Phase 0 — Toolchain + blinky (GPIO output)**
   - [ ] Component lab: characterize LEDs, resistors, buttons with the multimeter
-  - [ ] Install ESP-IDF v5.x (record the exact version)
+  - [ ] Install ESP-IDF v6.1 (record the exact version)
   - [ ] USB passthrough (`usbipd-win`) + serial permissions
   - [ ] Project skeleton; build, flash, monitor
   - [ ] Blinky from a FreeRTOS task
